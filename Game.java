@@ -98,27 +98,39 @@ public class Game {
         JButton aboutGameButton = new JButton("About...");
         aboutGameButton.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
         aboutGameButton.setLocation((WINDOW_WIDTH - BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - 5 * BUTTON_HEIGHT / 2));
+        aboutGameButton.setOpaque(true);
         aboutGameButton.addActionListener(e -> aboutGamePopup());
         gameContentPanel.add(aboutGameButton);
+
+        // Resolving compatibility issue with Mac
+        try {
+            UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // Red Button Construction
         RedCell.setBackground(Color.RED);
         RedCell.setBounds(MARGIN, MARGIN + TOP_MARGIN, CELL_SIZE, CELL_SIZE);
+        RedCell.setOpaque(true);
         gameFrame.add(RedCell);
 
         // Green Button Construction
         GreenCell.setBackground(Color.GREEN);
         GreenCell.setBounds(2 * MARGIN + CELL_SIZE, MARGIN + TOP_MARGIN, CELL_SIZE, CELL_SIZE);
+        GreenCell.setOpaque(true);
         gameFrame.add(GreenCell);
 
         // Blue Button Construction
         BlueCell.setBackground(Color.BLUE);
         BlueCell.setBounds(MARGIN, 2*MARGIN + CELL_SIZE + TOP_MARGIN, CELL_SIZE, CELL_SIZE);
+        BlueCell.setOpaque(true);
         gameFrame.add(BlueCell);
 
         // Yellow Button Construction
         YellowCell.setBackground(Color.YELLOW);
         YellowCell.setBounds(2*MARGIN + CELL_SIZE, 2*MARGIN + CELL_SIZE + TOP_MARGIN, CELL_SIZE, CELL_SIZE);
+        YellowCell.setOpaque(true);
         gameFrame.add(YellowCell);
 
         // Action Listeners for user click
