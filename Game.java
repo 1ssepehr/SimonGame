@@ -1,4 +1,5 @@
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +10,12 @@ public class Game {
 
     // Panel size constants
     private static final int WINDOW_WIDTH = 600;                   // Total Window's Width
-    private static final int WINDOW_HEIGHT = WINDOW_WIDTH + 120;   // Total Window's Height
+    private static final int WINDOW_HEIGHT = WINDOW_WIDTH + 180;   // Total Window's Height
     private static final int MARGIN = 64;
     private static final int TOP_MARGIN = 88;
     private static final int TITLE_MARGIN = 18;
+    private static final int BUTTON_WIDTH = 96;
+    private static final int BUTTON_HEIGHT = 45;
 
     // Cell Size
     private static final int CELL_SIZE = (WINDOW_WIDTH - 3*MARGIN) / 2;
@@ -91,6 +94,13 @@ public class Game {
         scoreLabel.setLocation(0, 4 * TITLE_MARGIN);
         gameContentPanel.add(scoreLabel);
 
+        // About button at the bottom
+        JButton aboutGameButton = new JButton("About...");
+        aboutGameButton.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
+        aboutGameButton.setLocation((WINDOW_WIDTH - BUTTON_WIDTH) / 2, (WINDOW_HEIGHT - 5 * BUTTON_HEIGHT / 2));
+        aboutGameButton.addActionListener(e -> aboutGamePopup());
+        gameContentPanel.add(aboutGameButton);
+
         // Red Button Construction
         RedCell.setBackground(Color.RED);
         RedCell.setBounds(MARGIN, MARGIN + TOP_MARGIN, CELL_SIZE, CELL_SIZE);
@@ -120,6 +130,15 @@ public class Game {
         // Finalizing gameFrame visibility
         gameFrame.setLayout(null);
         gameFrame.setVisible(true);
+    }
+
+    private static void aboutGamePopup() {
+        String aboutMessage = "Simon Game. Created with love by Sepehr Madani. \n\n" +
+                "Originally invented by Ralph H. Baer and Howard J. Morrison. \n" +
+                "All rights reserved for the publisher of the game, Hasbro. \n\n"+
+                "To play, simply watch the sequence of cells and click them in order they lit up. \n\n\n" +
+                "Dedicated to Emily Danielian.";
+        JOptionPane.showMessageDialog(null, aboutMessage ,"About", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private static void playCells() { // Displays the Sequence by flashing the Cells
