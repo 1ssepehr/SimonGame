@@ -3,8 +3,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class Game {
 
@@ -18,8 +17,8 @@ public class Game {
 
     // Variable initialization
     private static List<Integer> Sequence = new ArrayList<>();      // The sequence of Cells Flashing
-    private static int PlayerAttempt;                                 // The Cell Number that Player attempts to guess
-    private static int AttemptIndex = 0;                                   // Index of the User's guess to check with Sequence
+    private static int PlayerAttempt;                               // The Cell Number that Player attempts to guess
+    private static int AttemptIndex = 0;                            // Index of the User's guess to check with Sequence
     private static Random NumberGenerator = new Random();           // Random generator for flashing
 
     //Graphical Elements Definition
@@ -31,7 +30,7 @@ public class Game {
 
     // Logical booleans of the Game
     private static boolean canReceiveClicks = false;                // To prevent user clicks when showing Sequence
-    private static boolean noPlayerMistake = true;                    // To terminate game when user makes a mistake
+    private static boolean noPlayerMistake = true;                  // To terminate game when user makes a mistake
 
     ////////////////////////
     /////     MAIN     /////
@@ -60,7 +59,8 @@ public class Game {
     private static void graphicElementsInitialize() { // Initializing, placing, and displaying the GUI
 
         // JFrame Construction, Size, Location, Exit state
-        frame.setTitle("Simon Game");
+        frame.getContentPane().add(new JLabel("Welcome to the Secret Shop!"));
+        frame.setTitle("Simon Game, by Sepehr Madani");             // Window Title
         frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);                 // Size
         frame.setLocation(200, 200);                          // Location
         frame.setBackground(Color.WHITE);                           // Color
@@ -161,7 +161,8 @@ public class Game {
         GreenCell.setBackground(Color.BLACK);
         BlueCell.setBackground(Color.BLACK);
         YellowCell.setBackground(Color.BLACK);
-        sleep(1500);
+        JOptionPane.showMessageDialog(null, "Oops! You lost. Great Job!","Game over", JOptionPane.ERROR_MESSAGE);
+        sleep(500);
         frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
     }
 
