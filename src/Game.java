@@ -9,8 +9,8 @@ import javax.swing.*;
 public class Game {
 
     // Panel size constants
-    private static final int WINDOW_WIDTH = 600;                   // Total Window's Width
-    private static final int WINDOW_HEIGHT = WINDOW_WIDTH + 180;   // Total Window's Height
+    private static final int WINDOW_WIDTH = 600;  // Total Window's Width
+    private static final int WINDOW_HEIGHT = WINDOW_WIDTH + 180;  // Total Window's Height
     private static final int MARGIN = 64;
     private static final int TOP_MARGIN = 88;
     private static final int TITLE_MARGIN = 18;
@@ -18,7 +18,7 @@ public class Game {
     private static final int BUTTON_HEIGHT = 45;
 
     // Cell Size
-    private static final int CELL_SIZE = (WINDOW_WIDTH - 3*MARGIN) / 2;
+    private static final int CELL_SIZE = (WINDOW_WIDTH - 3*MARGIN)/2;
 
     // Variable initialization
     private static List<Integer> Sequence = new ArrayList<>();      // The sequence of Cells Flashing
@@ -36,12 +36,10 @@ public class Game {
     private static JLabel scoreLabel;
 
     // Logical booleans of the Game
-    private static boolean canReceiveClicks = false;                // To prevent user clicks when showing Sequence
-    private static boolean noPlayerMistake = true;                  // To terminate game when user makes a mistake
+    private static boolean canReceiveClicks = false;    // To prevent user clicks when showing Sequence
+    private static boolean noPlayerMistake = true;      // To terminate game when user makes a mistake
 
-    ////////////////////////
-    /////     MAIN     /////
-    ////////////////////////
+    // main function
     public static void main(String[] args){
         // Initializing, placing, and displaying the GUI
         graphicElementsInitialize();
@@ -160,18 +158,10 @@ public class Game {
         sleep(500);                                          // To grab player's attention after it turned gray
         for (Integer aSequence : Sequence) {                    // In a foreach loop, displays the Sequence on Cells
             switch (aSequence) {
-                case 0: // for Red
-                    cellShow(RedCell);
-                    break;
-                case 1: // for Green
-                    cellShow(GreenCell);
-                    break;
-                case 2: // for Blue
-                    cellShow(BlueCell);
-                    break;
-                case 3: // for Yellow
-                    cellShow(YellowCell);
-                    break;
+                case 0 -> cellShow(RedCell);    // for Red
+                case 1 -> cellShow(GreenCell);  // for Green
+                case 2 -> cellShow(BlueCell);   // for Blue
+                case 3 -> cellShow(YellowCell); // for Yellow
             }
         }
         sleep(500);                                      // Last delay to make a smooth transition to white
@@ -202,11 +192,11 @@ public class Game {
         }
     }
 
-    private static void checkForPlayerMistake() { // Checks if Player
+    private static void checkForPlayerMistake() {
         if (Sequence.get(AttemptIndex) == PlayerAttempt) {  // if player got it right, check for their next click
             AttemptIndex++;
         } else {
-            noPlayerMistake = false;                        // else, then player made a mistake. Oops!
+            noPlayerMistake = false; // else, then player made a mistake. Oops!
         }
     }
     private static void gameOver() {
@@ -215,7 +205,7 @@ public class Game {
         GreenCell.setBackground(Color.BLACK);
         BlueCell.setBackground(Color.BLACK);
         YellowCell.setBackground(Color.BLACK);
-        ScoreValue--;                                       // Fix the off-by-one during mistake
+        ScoreValue--; // Fix the off-by-one during mistake
         String gameOverMessage = "Oops! You lost. Final score: " + ScoreValue;
         JOptionPane.showMessageDialog(null, gameOverMessage,"Game over", JOptionPane.ERROR_MESSAGE);
         sleep(500);
